@@ -1,20 +1,19 @@
-const express = requre('express')
+const express = require('express')
 const cors = require('cors')
-const dotnet = require('dotenv');
-const { model } = require('mongoose');
+const dotenv = require('dotenv')
+const connectDB = require('./db')
 
-dotnet.config();
+dotenv.config()
+
+connectDB()
 
 const app = express()
 
-// middleware 
 app.use(cors())
 app.use(express.json())
 
-
-app.get("/api/health",(req,res)=>{
-    req.json({status :'server is running'})
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'server is running' })
 })
 
-
-model.export = app
+module.exports = app
